@@ -66,49 +66,10 @@
                         <?php echo $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description') ?>
                         <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $_productNameStripped ?>" class="link-learn"><?php echo $this->__('Learn More') ?></a>
                     </div>
-                    <!--            inchoo start-->
                     <?php
-                        $reviewCollection = Mage::getModel('review/review')->getCollection()->setPageSize(1)
-                                                ->addStoreFilter(Mage::app()->getStore()->getId())
-                                                ->addStatusFilter(Mage_Review_Model_Review::STATUS_APPROVED)
-                                                ->addEntityFilter('product', $_product->getId())
-                                                ->setDateOrder()
-                                                ->addRateVotes();
-
-                        $_items = $reviewCollection->getItems();
-
-                        foreach ($_items as $_review):
+                        $this->getChild('inchoo_reviews')->setData('product', $_product);
+                        echo $this->getChildHtml('inchoo_reviews');
                     ?>
-                        <dt>
-<!--                            <a href="--><?php //echo $this->getReviewUrl($_review->getId()) ?><!--">--><?php //echo $this->escapeHtml($_review->getTitle()) ?><!--</a> --><?php //echo $this->__('Review by <span>%s</span>', $this->escapeHtml($_review->getNickname())) ?>
-                            <a href="<?php echo Mage::getUrl('review/product/view', array('id' => $_review->getId())); ?>"><?php echo $this->escapeHtml($_review->getTitle()) ?></a> <?php echo $this->__('Review by <span>%s</span>', $this->escapeHtml($_review->getNickname())) ?>
-                        </dt>
-                        <dd>
-                            <?php $_votes = $_review->getRatingVotes(); ?>
-                            <?php if (count($_votes)): ?>
-                                <table class="ratings-table">
-                                    <col width="1" />
-                                    <col />
-                                    <tbody>
-                                    <?php foreach ($_votes as $_vote): ?>
-                                        <tr>
-                                            <th><?php echo $this->escapeHtml($_vote->getRatingCode()) ?></th>
-                                            <td>
-                                                <div class="rating-box">
-                                                    <div class="rating" style="width:<?php echo $_vote->getPercent() ?>%;"></div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                    </tbody>
-                                </table>
-                            <?php endif; ?>
-<!--                            --><?php //echo nl2br($this->escapeHtml($_review->getDetail())) ?>
-                            <small class="date"><?php echo $this->__('(Posted on %s)', $this->formatDate($_review->getCreatedAt()), 'long') ?></small>
-                        </dd>
-                    <?php endforeach;  ?>
-                    <!--            inchoo end-->
-
                     <ul class="add-to-links">
                         <?php if ($this->helper('wishlist')->isAllow()) : ?>
                             <li><a href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>" class="link-wishlist"><?php echo $this->__('Add to Wishlist') ?></a></li>
@@ -141,12 +102,17 @@
                 <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
                 <?php endif; ?>
                 <?php echo $this->getPriceHtml($_product, true) ?>
-                <div class="actions">
+                <div class="actions" style="position:static">
                     <?php if($_product->isSaleable()): ?>
                         <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
                     <?php else: ?>
                         <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
                     <?php endif; ?>
+
+                    <?php
+                        $this->getChild('inchoo_reviews')->setData('product', $_product);
+                        echo $this->getChildHtml('inchoo_reviews');
+                    ?>
                     <ul class="add-to-links">
                         <?php if ($this->helper('wishlist')->isAllow()) : ?>
                             <li><a href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>" class="link-wishlist"><?php echo $this->__('Add to Wishlist') ?></a></li>
