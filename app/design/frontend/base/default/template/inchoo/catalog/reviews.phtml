@@ -1,7 +1,7 @@
 <?php
     $_items = $this->getReviewData()->getItems();
     foreach ($_items as $_review):
-        ?>
+?>
         <dt>
             <a href="<?php echo Mage::getUrl('review/product/view', array('id' => $_review->getId())); ?>"><?php echo $this->escapeHtml($_review->getTitle()) ?></a> <?php echo $this->__('Review by <span>%s</span>', $this->escapeHtml($_review->getNickname())) ?>
         </dt>

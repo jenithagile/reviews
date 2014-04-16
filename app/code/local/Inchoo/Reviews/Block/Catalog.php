@@ -11,8 +11,6 @@ class Inchoo_Reviews_Block_Catalog extends Mage_Core_Block_Template
                                 ->addEntityFilter('product', $_product->getId())
                                 ->setDateOrder()
                                 ->addRateVotes();
-
-//        $_items = $reviewCollection->getItems();
         return $reviewCollection;
     }
 }
