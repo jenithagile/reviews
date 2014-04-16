@@ -1,0 +1,33 @@
+############################
+# Do not edit this section #
+############################
+
+# General and web
+/.gitignore
+/.htaccess
+/robots.txt
+/sitemap.xml
+
+# OS
+__MACOSX
+.DS_Store
+Thumbs.db
+.listing
+
+# IDE
+/.idea
+/.idea/*
+
+# Magento
+/app/etc/local.xml
+/errors/local.xml
+/var
+/var/*
+!/var/.htaccess
+
+#######################################
+# User specific - add your rules here #
+#######################################
+
+# Custom module development
+*
