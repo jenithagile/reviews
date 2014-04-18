@@ -116,7 +116,8 @@ Category layered navigation layout
             <block type="catalog/category_view" name="category.products" template="catalog/category/view.phtml">
                 <block type="catalog/product_list" name="product_list" template="catalog/product/list.phtml">
                     <!--inchoo start-->
-                    <block type="inchoo_reviews/catalog" name="inchoo_reviews" template="inchoo/catalog/reviews.phtml"/>
+                    <!--<block type="inchoo_reviews/catalog" name="inchoo_reviews" template="inchoo/catalog/reviews.phtml"/>-->
+                    <block type="rating/entity_detailed2" name="inchoo_reviews"/>
                     <!--inchoo end-->
                     <!-- <action method="addReviewSummaryTemplate"><type>default</type><template>review/helper/su.phtml</template></action> -->
                     <block type="catalog/product_list_toolbar" name="product_list_toolbar" template="catalog/product/list/toolbar.phtml">
