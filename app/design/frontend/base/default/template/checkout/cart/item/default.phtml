@@ -42,12 +42,7 @@ $canApplyMsrp = Mage::helper('catalog')->canApplyMsrp($_item->getProduct(), Mage
         <!--        inchoo start-->
         <?php
             $_product = $_item->getProduct();
-            //    $a = $this->getLayout()->createBlock('rating/entity_detailed')
-            //              ->setEntityId($_product->getId())
-            //              ->toHtml();
-
             $storeId    = Mage::app()->getStore()->getId();
-
             $summaryData = Mage::getModel('review/review_summary')
                                ->setStoreId($storeId)
                                ->load($_product->getId());
