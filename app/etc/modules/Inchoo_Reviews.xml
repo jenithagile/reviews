@@ -1,8 +1,0 @@
-<config>
-    <modules>
-        <Inchoo_Reviews>
-            <active>true</active>
-            <codePool>local</codePool>
-        </Inchoo_Reviews>
-    </modules>
-</config>
