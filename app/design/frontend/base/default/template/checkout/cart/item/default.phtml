@@ -47,7 +47,7 @@ $canApplyMsrp = Mage::helper('catalog')->canApplyMsrp($_item->getProduct(), Mage
                                ->setStoreId($storeId)
                                ->load($_product->getId());
 
-            if (count($summaryData['rating_summary'])):
+            if ($summaryData['rating_summary']):
         ?>
                 <div class="ratings">
                     <div class="rating-box">
